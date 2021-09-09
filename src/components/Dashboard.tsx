@@ -1,27 +1,41 @@
-import { FC, useState } from 'react';
+import { ChangeEvent, FC, useState } from 'react';
 import { SwatchInterface } from '../models/SwatchInterface';
+import HexInput from './HexInput';
 import Swatch from './Swatch';
 
 const Dashboard:FC = (props) => {
     const [swatches, setSwatches] = useState<SwatchInterface[]>([]);
+    const [hexCode, setHex] = useState<string>('');
 
-    const addSwatch = () => {
+    const addSwatch = (e: ChangeEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
         setSwatches([
             {
-                hex: '#3D087B'
+                hex: hexCode,
             },
             ...swatches,
         ]);
+        setHex('');
+    }
+
+    const handleHexUpdate = (e: ChangeEvent<HTMLInputElement>) => {
+        const currentHex = e.currentTarget.value;
+
+        setHex(currentHex);
     }
 
     return (
         <>
+            <HexInput
+                onSubmit={ addSwatch }
+                hexCode={ hexCode }
+                onChange={ handleHexUpdate } />
             <div className="swatches">
                 {
                     swatches.map((item: SwatchInterface, i) => <Swatch key={i} hex={ item.hex } />)
                 }
             </div>
-            <button type="button" onClick={addSwatch}>Add Swatch!</button>
         </>
     );
 };
