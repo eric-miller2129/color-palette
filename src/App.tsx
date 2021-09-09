@@ -7,23 +7,6 @@ import {
 import Dashboard from "./components/Dashboard";
 import { FC } from 'react';
 
-// function App() {
-//     return (
-        // <div className="container">
-        //     <Router>
-        //         <Header />
-        //         <Switch>
-        //             <Route path="/">
-        //                 <Dashboard />
-        //             </Route>
-        //         </Switch>
-        //     </Router>
-        // </div>
-//     );
-// }
-
-// export default App;
-
 const App: FC = (props) => {
     return (
         <div className="container">
