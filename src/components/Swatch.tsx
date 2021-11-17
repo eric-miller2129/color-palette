@@ -1,9 +1,14 @@
 import { FC } from 'react';
 import { SwatchInterface } from '../models/SwatchInterface';
+import { motion } from 'framer-motion';
 
 const Swatch: FC<SwatchInterface> = (props) => {
     return (
-        <div className="swatch">
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="swatch">
             <span className="swatch--preview" style={{ backgroundColor: props.hex }}></span>
             <div className="swatch--actions">
                 <div className="swatch--hex">
@@ -20,7 +25,7 @@ const Swatch: FC<SwatchInterface> = (props) => {
                     </svg>
                 </button>
             </div>
-        </div>
+        </motion.div>
     );
 }
 

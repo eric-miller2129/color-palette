@@ -1,3 +1,4 @@
+import { AnimatePresence } from 'framer-motion';
 import { ChangeEvent, FC, useState } from 'react';
 import { SwatchInterface } from '../models/SwatchInterface';
 import HexInput from './HexInput';
@@ -12,7 +13,7 @@ const Dashboard:FC = (props) => {
 
         setSwatches([
             {
-                hex: hexCode,
+                hex: '#' + hexCode,
             },
             ...swatches,
         ]);
@@ -32,9 +33,11 @@ const Dashboard:FC = (props) => {
                 hexCode={ hexCode }
                 onChange={ handleHexUpdate } />
             <div className="swatches">
-                {
-                    swatches.map((item: SwatchInterface, i) => <Swatch key={i} hex={ item.hex } />)
-                }
+                <AnimatePresence>
+                    {
+                        swatches.map((item: SwatchInterface, i) => <Swatch key={i} hex={ item.hex } />)
+                    }
+                </AnimatePresence>
             </div>
         </>
     );
